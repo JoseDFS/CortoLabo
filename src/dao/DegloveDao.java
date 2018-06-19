@@ -23,7 +23,7 @@ import modelo.Mascota;
 public class DegloveDao implements metodos<Mascota> {
 
     private static final String SQL_INSERT = "INSERT INTO mascotas (numInscripcion,nombre,propietario,edad,raza,estado) VALUES (?,?,?,?,?,?)";
-    private static final String SQL_UPDATE = "UPDATE mascotas SET nombre = ?,propietario = ?,edad =? ,raza = ?,estado = ? WHERE numInscripcion=?";
+    private static final String SQL_UPDATE = "UPDATE mascotas SET nombre = ?,propietario = ?,edad =? ,raza = ?,estado = ? WHERE numInscripcion = ?";
     private static final String SQL_DELETE = "DELETE FROM mascotas WHERE numInscripcion=?";
 
     private static final String SQL_READ = "SELECT * FROM mascotas WHERE numInscripcion=?";
