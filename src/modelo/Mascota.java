@@ -32,13 +32,13 @@ public class Mascota {
         this.estado = estado;
     }
 
-    public Mascota(String numInscripcion, String nombre, String propietario, int edad, String raza, boolean estado) {
+    public Mascota(String numInscripcion, String nombre, String propietario, int edad, String raza) {
         this.numInscripcion = numInscripcion;
         this.nombre = nombre;
         this.propietario = propietario;
         this.edad = edad;
         this.raza = raza;
-        this.estado = estado;
+       
     }
 
     public Mascota(String nombre, String propietario, int edad, String raza, boolean estado) {

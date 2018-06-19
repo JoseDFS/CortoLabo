@@ -170,7 +170,7 @@ public class CortoLabo extends JFrame {
         ArrayList<Mascota> mascotas = fd.readAll();
 
         for (Mascota fi : mascotas) {
-            tm.addRow(new Object[]{fi.getNumInscripcion(), fi.getNombre(), fi.getPropietario(), fi.isEstado()});
+            tm.addRow(new Object[]{fi.getNumInscripcion(), fi.getNombre(), fi.getPropietario(),fi.getRaza(), fi.isEstado()});
         }
 
         resultados.setModel(tm);
@@ -183,7 +183,7 @@ public class CortoLabo extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DegloveDao fd = new DegloveDao();
-                Mascota f = new Mascota();
+                Mascota f = new Mascota(numInscripcion.getText(),nombre.getText(),Propietario.getText(),Integer.parseInt(edad.getText()),raza.getSelectedItem().toString());
 
                 if (no.isSelected()) {
                     f.setEstado(false);
@@ -223,12 +223,9 @@ public class CortoLabo extends JFrame {
                 DegloveDao fd = new DegloveDao();
                 Mascota f = fd.read(numInscripcion.getText());
                 if (f == null) {
-                    f.setEstado(false);
-                }
-                if (fd.create(f)) {
                     JOptionPane.showMessageDialog(null, "La inscripcion no se ha encontrado");
-
-                } else {
+                }
+                else {
                     numInscripcion.setText(f.getNumInscripcion());
                     raza.setSelectedItem(f.getNombre());
                     Propietario.setText(f.getPropietario());
