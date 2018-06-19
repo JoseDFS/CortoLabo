@@ -31,7 +31,7 @@ import modelo.Mascota;
  */
 public class CortoLabo extends JFrame {
 
-    public JLabel lblnumInscripcion, lblNombre, lblPropietario, lblRaza, lblEstado;
+    public JLabel lblnumInscripcion, lblNombre, lblPropietario, lblRaza, lblEstado, lblEdad;
 
     public JTextField numInscripcion, nombre, Propietario, edad;
     public JComboBox raza;
@@ -61,9 +61,11 @@ public class CortoLabo extends JFrame {
         container.add(lblNombre);
         container.add(lblPropietario);
         container.add(lblRaza);
+        container.add(lblEdad);
         container.add(lblEstado);
         container.add(numInscripcion);
         container.add(edad);
+        container.add(nombre);
         container.add(raza);
         container.add(Propietario);
         container.add(si);
@@ -74,13 +76,14 @@ public class CortoLabo extends JFrame {
         container.add(eliminar);
         container.add(limpiar);
         container.add(table);
-        setSize(800, 800);
+        setSize(800, 600);
         eventos();
 
     }
 
     private void agregarLabels() {
         lblnumInscripcion = new JLabel("N° Inscripcion");
+        lblEdad = new JLabel("Edad");
         lblNombre = new JLabel("Nombre");
         lblPropietario = new JLabel("Propietario");
         lblRaza = new JLabel("Raza");
@@ -89,7 +92,7 @@ public class CortoLabo extends JFrame {
         lblNombre.setBounds(10, 60, ANCHOC, ALTOC);
         lblPropietario.setBounds(420, 60, ANCHOC, ALTOC);
         lblRaza.setBounds(10, 140, ANCHOC, ALTOC);
-
+        lblEdad.setBounds(10, 100, ANCHOC, ALTOC);
         lblEstado.setBounds(10, 180, ANCHOC, ALTOC);
 
     }
@@ -121,18 +124,18 @@ public class CortoLabo extends JFrame {
 
         numInscripcion.setBounds(120, 10, ANCHOC, ALTOC);
         nombre.setBounds(120, 60, ANCHOC, ALTOC);
-        edad.setBounds(120, 10, ANCHOC, ALTOC);
-        raza.setBounds(10, 140, ANCHOC, ALTOC);
+        edad.setBounds(120, 100, ANCHOC, ALTOC);
+        raza.setBounds(50, 140, ANCHOC, ALTOC);
         Propietario.setBounds(500, 60, ANCHOC, ALTOC);
         si.setBounds(50, 180, 50, ALTOC);
-        no.setBounds(70, 180, 50, ALTOC);
+        no.setBounds(100, 180, 50, ALTOC);
         buscar.setBounds(300, 10, ANCHOC, ALTOC);
         insertar.setBounds(10, 210, ANCHOC, ALTOC);
         actualizar.setBounds(150, 210, ANCHOC, ALTOC);
         eliminar.setBounds(300, 210, ANCHOC, ALTOC);
         limpiar.setBounds(450, 210, ANCHOC, ALTOC);
         resultados = new JTable();
-        table.setBounds(10, 500, 500, 200);
+        table.setBounds(10, 250, 800, 300);
         table.add(new JScrollPane(resultados));
 
     }
@@ -147,10 +150,9 @@ public class CortoLabo extends JFrame {
                         return String.class;
                     case 2:
                         return String.class;
-                        
+
                     case 3:
                         return String.class;
-                 
 
                     default:
                         return Boolean.class;
