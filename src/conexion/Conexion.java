@@ -51,7 +51,7 @@ public class Conexion {
         user = "root";
         pass="";
         driver="com.mysql.jdbc.Driver";
-        url="jdbc:mysql://localhost/deglove";
+        url="jdbc:mysql://localhost/doglove";
     }
 
     public Connection getCnx() {

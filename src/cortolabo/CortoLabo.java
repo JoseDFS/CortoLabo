@@ -87,7 +87,7 @@ public class CortoLabo extends JFrame {
         lblEstado = new JLabel("Estado");
         lblnumInscripcion.setBounds(10, 10, ANCHOC, ALTOC);
         lblNombre.setBounds(10, 60, ANCHOC, ALTOC);
-        lblPropietario.setBounds(10, 100, ANCHOC, ALTOC);
+        lblPropietario.setBounds(420, 60, ANCHOC, ALTOC);
         lblRaza.setBounds(10, 140, ANCHOC, ALTOC);
 
         lblEstado.setBounds(10, 180, ANCHOC, ALTOC);
@@ -120,19 +120,19 @@ public class CortoLabo extends JFrame {
         estado.add(no);
 
         numInscripcion.setBounds(120, 10, ANCHOC, ALTOC);
-        nombre.setBounds(120, 20, ANCHOC, ALTOC);
+        nombre.setBounds(120, 60, ANCHOC, ALTOC);
         edad.setBounds(120, 10, ANCHOC, ALTOC);
-        raza.setBounds(120, 60, ANCHOC, ALTOC);
-        Propietario.setBounds(500, 100, ANCHOC, ALTOC);
-        si.setBounds(140, 140, 50, ALTOC);
-        no.setBounds(210, 140, 50, ALTOC);
+        raza.setBounds(10, 140, ANCHOC, ALTOC);
+        Propietario.setBounds(500, 60, ANCHOC, ALTOC);
+        si.setBounds(50, 180, 50, ALTOC);
+        no.setBounds(70, 180, 50, ALTOC);
         buscar.setBounds(300, 10, ANCHOC, ALTOC);
         insertar.setBounds(10, 210, ANCHOC, ALTOC);
         actualizar.setBounds(150, 210, ANCHOC, ALTOC);
         eliminar.setBounds(300, 210, ANCHOC, ALTOC);
         limpiar.setBounds(450, 210, ANCHOC, ALTOC);
         resultados = new JTable();
-        table.setBounds(10, 250, 500, 200);
+        table.setBounds(10, 500, 500, 200);
         table.add(new JScrollPane(resultados));
 
     }
