@@ -170,7 +170,7 @@ public class CortoLabo extends JFrame {
         ArrayList<Mascota> mascotas = fd.readAll();
 
         for (Mascota fi : mascotas) {
-            tm.addRow(new Object[]{fi.getNumInscripcion(), fi.getNombre(), fi.getPropietario(),fi.getRaza(), fi.isEstado()});
+            tm.addRow(new Object[]{fi.getNumInscripcion(), fi.getNombre(), fi.getPropietario(), fi.getRaza(), fi.isEstado()});
         }
 
         resultados.setModel(tm);
@@ -183,13 +183,34 @@ public class CortoLabo extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DegloveDao fd = new DegloveDao();
-                Mascota f = new Mascota(numInscripcion.getText(),nombre.getText(),Propietario.getText(),Integer.parseInt(edad.getText()),raza.getSelectedItem().toString());
+                Mascota f = new Mascota(numInscripcion.getText(), nombre.getText(), Propietario.getText(), Integer.parseInt(edad.getText()), raza.getSelectedItem().toString());
 
                 if (no.isSelected()) {
                     f.setEstado(false);
                 }
                 if (fd.create(f)) {
                     JOptionPane.showMessageDialog(null, "Mascota registrada con exito");
+                    limpiarCampos();
+                    llenarTabla();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ocurrio un problema a la hora de insertar la inscripcion");
+                }
+            }
+
+        });
+
+        actualizar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DegloveDao fd = new DegloveDao();
+                Mascota f = new Mascota(numInscripcion.getText(), nombre.getText(), Propietario.getText(), Integer.parseInt(edad.getText()), raza.getSelectedItem().toString());
+
+                if (no.isSelected()) {
+                    f.setEstado(false);
+                }
+                if (fd.update(f)) {
+                    JOptionPane.showMessageDialog(null, "Mascota modificada con exito");
                     limpiarCampos();
                     llenarTabla();
                 } else {
@@ -224,8 +245,7 @@ public class CortoLabo extends JFrame {
                 Mascota f = fd.read(numInscripcion.getText());
                 if (f == null) {
                     JOptionPane.showMessageDialog(null, "La inscripcion no se ha encontrado");
-                }
-                else {
+                } else {
                     numInscripcion.setText(f.getNumInscripcion());
                     raza.setSelectedItem(f.getRaza());
                     Propietario.setText(f.getPropietario());
