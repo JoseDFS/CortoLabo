@@ -23,7 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import modelo.Filtro;
+import modelo.Mascota;
 
 /**
  *
@@ -31,12 +31,12 @@ import modelo.Filtro;
  */
 public class CortoLabo extends JFrame {
 
-    public JLabel lblCodigo, lblMarca, lblStock, lblExistencia;
+    public JLabel lblnumInscripcion, lblNombre, lblPropietario, lblRaza, lblEstado;
 
-    public JTextField codigo, descripcion, stock;
-    public JComboBox marca;
+    public JTextField numInscripcion, nombre, Propietario, edad;
+    public JComboBox raza;
 
-    ButtonGroup existencia = new ButtonGroup();
+    ButtonGroup estado = new ButtonGroup();
     public JRadioButton no;
     public JRadioButton si;
     public JTable resultados;
@@ -50,20 +50,22 @@ public class CortoLabo extends JFrame {
     DefaultTableModel tm;
 
     public CortoLabo() {
-        super("Inventario");
+        super("Inscripciones");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         agregarLabels();
         formulario();
         llenarTabla();
         Container container = getContentPane();
-        container.add(lblCodigo);
-        container.add(lblMarca);
-        container.add(lblStock);
-        container.add(lblExistencia);
-        container.add(codigo);
-        container.add(marca);
-        container.add(stock);
+        container.add(lblnumInscripcion);
+        container.add(lblNombre);
+        container.add(lblPropietario);
+        container.add(lblRaza);
+        container.add(lblEstado);
+        container.add(numInscripcion);
+        container.add(edad);
+        container.add(raza);
+        container.add(Propietario);
         container.add(si);
         container.add(no);
         container.add(buscar);
@@ -72,27 +74,32 @@ public class CortoLabo extends JFrame {
         container.add(eliminar);
         container.add(limpiar);
         container.add(table);
-        setSize(600, 600);
+        setSize(800, 800);
         eventos();
 
     }
 
     private void agregarLabels() {
-        lblCodigo = new JLabel("Codigo");
-        lblMarca = new JLabel("Marca");
-        lblStock = new JLabel("Stock");
-        lblExistencia = new JLabel("Stock en tienda");
-        lblCodigo.setBounds(10, 10, ANCHOC, ALTOC);
-        lblMarca.setBounds(10, 60, ANCHOC, ALTOC);
-        lblStock.setBounds(10, 100, ANCHOC, ALTOC);
-        lblExistencia.setBounds(10, 140, ANCHOC, ALTOC);
+        lblnumInscripcion = new JLabel("N° Inscripcion");
+        lblNombre = new JLabel("Nombre");
+        lblPropietario = new JLabel("Propietario");
+        lblRaza = new JLabel("Raza");
+        lblEstado = new JLabel("Estado");
+        lblnumInscripcion.setBounds(10, 10, ANCHOC, ALTOC);
+        lblNombre.setBounds(10, 60, ANCHOC, ALTOC);
+        lblPropietario.setBounds(10, 100, ANCHOC, ALTOC);
+        lblRaza.setBounds(10, 140, ANCHOC, ALTOC);
+
+        lblEstado.setBounds(10, 180, ANCHOC, ALTOC);
 
     }
 
     private void formulario() {
-        codigo = new JTextField();
-        marca = new JComboBox();
-        stock = new JTextField();
+        numInscripcion = new JTextField();
+        edad = new JTextField();
+        nombre = new JTextField();
+        raza = new JComboBox();
+        Propietario = new JTextField();
         si = new JRadioButton("si", true);
         no = new JRadioButton("no", false);
         resultados = new JTable();
@@ -103,18 +110,20 @@ public class CortoLabo extends JFrame {
         limpiar = new JButton("Limpiar");
 
         table = new JPanel();
-        marca.addItem("FRAM");
-        marca.addItem("WIX");
-        marca.addItem("Luber Finer");
-        marca.addItem("OSK");
+        raza.addItem("PITBULL");
+        raza.addItem("PASTOR ALVINO");
+        raza.addItem("SIBERIANO");
+        raza.addItem("BOXER");
 
-        existencia = new ButtonGroup();
-        existencia.add(si);
-        existencia.add(no);
+        estado = new ButtonGroup();
+        estado.add(si);
+        estado.add(no);
 
-        codigo.setBounds(140, 10, ANCHOC, ALTOC);
-        marca.setBounds(140, 60, ANCHOC, ALTOC);
-        stock.setBounds(140, 100, ANCHOC, ALTOC);
+        numInscripcion.setBounds(120, 10, ANCHOC, ALTOC);
+        nombre.setBounds(120, 20, ANCHOC, ALTOC);
+        edad.setBounds(120, 10, ANCHOC, ALTOC);
+        raza.setBounds(120, 60, ANCHOC, ALTOC);
+        Propietario.setBounds(500, 100, ANCHOC, ALTOC);
         si.setBounds(140, 140, 50, ALTOC);
         no.setBounds(210, 140, 50, ALTOC);
         buscar.setBounds(300, 10, ANCHOC, ALTOC);
@@ -138,22 +147,28 @@ public class CortoLabo extends JFrame {
                         return String.class;
                     case 2:
                         return String.class;
+                        
+                    case 3:
+                        return String.class;
+                 
+
                     default:
                         return Boolean.class;
                 }
             }
         };
 
-        tm.addColumn("Codigo");
-        tm.addColumn("Marca");
-        tm.addColumn("Stock");
-        tm.addColumn("Stock en Sucursal");
+        tm.addColumn("N° Inscripcion");
+        tm.addColumn("Nombre");
+        tm.addColumn("Propietario");
+        tm.addColumn("Raza");
+        tm.addColumn("Estado");
 
         DegloveDao fd = new DegloveDao();
-        ArrayList<Filtro> filtros = fd.readAll();
+        ArrayList<Mascota> mascotas = fd.readAll();
 
-        for (Filtro fi : filtros) {
-            tm.addRow(new Object[]{fi.getCodigo(), fi.getMarca(), fi.getStock(), fi.isExistencia()});
+        for (Mascota fi : mascotas) {
+            tm.addRow(new Object[]{fi.getNumInscripcion(), fi.getNombre(), fi.getPropietario(), fi.isEstado()});
         }
 
         resultados.setModel(tm);
@@ -166,17 +181,17 @@ public class CortoLabo extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DegloveDao fd = new DegloveDao();
-                Filtro f = new Filtro(codigo.getText(), marca.getSelectedItem().toString(), Integer.parseInt(stock.getText()), true);
+                Mascota f = new Mascota();
 
                 if (no.isSelected()) {
-                    f.setExistence(false);
+                    f.setEstado(false);
                 }
                 if (fd.create(f)) {
-                    JOptionPane.showMessageDialog(null, "Filtro registrado con exito");
+                    JOptionPane.showMessageDialog(null, "Mascota registrada con exito");
                     limpiarCampos();
                     llenarTabla();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Ocurrio un problema a la hora d emodificar el filtro");
+                    JOptionPane.showMessageDialog(null, "Ocurrio un problema a la hora de modificar la inscripcion");
                 }
             }
 
@@ -188,67 +203,68 @@ public class CortoLabo extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 DegloveDao fd = new DegloveDao();
 
-                if (fd.delete(codigo.getText())) {
-                    JOptionPane.showMessageDialog(null, "Filtro eliminado con exito");
+                if (fd.delete(numInscripcion.getText())) {
+                    JOptionPane.showMessageDialog(null, "Inscripcion eliminado con exito");
                     limpiarCampos();
                     llenarTabla();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Ocurrio un problema a la hora de eliminar el filtro");
+                    JOptionPane.showMessageDialog(null, "Ocurrio un problema a la hora de eliminar la inscripcion");
                 }
             }
 
         });
-        
+
         buscar.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 DegloveDao fd = new DegloveDao();
-                Filtro f = fd.read(codigo.getText());
-                if(f == null)
-                    f.setExistence(false);
-                if(fd.create(f)){
-                    JOptionPane.showMessageDialog(null,"El filtro buscado no se ha encontrado");
-                   
+                Mascota f = fd.read(numInscripcion.getText());
+                if (f == null) {
+                    f.setEstado(false);
                 }
-                else{
-                    codigo.setText(f.getCodigo());
-                    marca.setSelectedItem(f.getMarca());
-                    stock.setText(Integer.toString(f.getStock()));
-                    
-                    if(f.isExistencia()){
+                if (fd.create(f)) {
+                    JOptionPane.showMessageDialog(null, "La inscripcion no se ha encontrado");
+
+                } else {
+                    numInscripcion.setText(f.getNumInscripcion());
+                    raza.setSelectedItem(f.getNombre());
+                    Propietario.setText(f.getPropietario());
+
+                    if (f.isEstado()) {
                         si.setSelected(true);
-                    }
-                    else{
+                    } else {
                         no.setSelected(false);
                     }
                 }
             }
-        
+
         });
-        
-         insertar.addActionListener(new ActionListener() {
+
+        insertar.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 limpiarCampos();
             }
-        
+
         });
 
     }
 
     public void limpiarCampos() {
-        codigo.setText("");
-        marca.setSelectedItem("FRAM");
-        stock.setText("");
+        numInscripcion.setText("");
+        raza.setSelectedItem("SIBERIANO");
+        Propietario.setText("");
+        nombre.setText("");
+        edad.setText("");
     }
 
-    public static void main(String args) {
-        java.awt.EventQueue.invokeLater(new Runnable(){
+    public static void main(String[] args) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
-            public void run(){
-                new Corto().setVisible(true);
+            public void run() {
+                new CortoLabo().setVisible(true);
             }
         });
     }
