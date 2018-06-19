@@ -241,7 +241,7 @@ public class CortoLabo extends JFrame {
 
         });
 
-        insertar.addActionListener(new ActionListener() {
+        limpiar.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
