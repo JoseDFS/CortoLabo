@@ -76,7 +76,7 @@ public class CortoLabo extends JFrame {
         container.add(eliminar);
         container.add(limpiar);
         container.add(table);
-        setSize(800, 600);
+        setSize(600, 600);
         eventos();
 
     }
@@ -90,7 +90,7 @@ public class CortoLabo extends JFrame {
         lblEstado = new JLabel("Estado");
         lblnumInscripcion.setBounds(10, 10, ANCHOC, ALTOC);
         lblNombre.setBounds(10, 60, ANCHOC, ALTOC);
-        lblPropietario.setBounds(420, 60, ANCHOC, ALTOC);
+        lblPropietario.setBounds(300, 60, ANCHOC, ALTOC);
         lblRaza.setBounds(10, 140, ANCHOC, ALTOC);
         lblEdad.setBounds(10, 100, ANCHOC, ALTOC);
         lblEstado.setBounds(10, 180, ANCHOC, ALTOC);
@@ -126,7 +126,7 @@ public class CortoLabo extends JFrame {
         nombre.setBounds(120, 60, ANCHOC, ALTOC);
         edad.setBounds(120, 100, ANCHOC, ALTOC);
         raza.setBounds(50, 140, ANCHOC, ALTOC);
-        Propietario.setBounds(500, 60, ANCHOC, ALTOC);
+        Propietario.setBounds(380, 60, ANCHOC, ALTOC);
         si.setBounds(50, 180, 50, ALTOC);
         no.setBounds(100, 180, 50, ALTOC);
         buscar.setBounds(300, 10, ANCHOC, ALTOC);
@@ -135,7 +135,7 @@ public class CortoLabo extends JFrame {
         eliminar.setBounds(300, 210, ANCHOC, ALTOC);
         limpiar.setBounds(450, 210, ANCHOC, ALTOC);
         resultados = new JTable();
-        table.setBounds(10, 250, 800, 300);
+        table.setBounds(10, 250, 550, 300);
         table.add(new JScrollPane(resultados));
 
     }
@@ -154,6 +154,9 @@ public class CortoLabo extends JFrame {
                     case 3:
                         return String.class;
 
+                    case 4:
+                        return String.class;
+
                     default:
                         return Boolean.class;
                 }
@@ -164,13 +167,14 @@ public class CortoLabo extends JFrame {
         tm.addColumn("Nombre");
         tm.addColumn("Propietario");
         tm.addColumn("Raza");
+        tm.addColumn("Edad");
         tm.addColumn("Estado");
 
         DegloveDao fd = new DegloveDao();
         ArrayList<Mascota> mascotas = fd.readAll();
 
         for (Mascota fi : mascotas) {
-            tm.addRow(new Object[]{fi.getNumInscripcion(), fi.getNombre(), fi.getPropietario(), fi.getRaza(), fi.isEstado()});
+            tm.addRow(new Object[]{fi.getNumInscripcion(), fi.getNombre(), fi.getPropietario(), fi.getRaza(),fi.getEdad(), fi.isEstado()});
         }
 
         resultados.setModel(tm);
