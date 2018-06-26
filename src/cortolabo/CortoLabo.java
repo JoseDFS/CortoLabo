@@ -188,6 +188,10 @@ public class CortoLabo extends JFrame {
                 if (no.isSelected()) {
                     f.setEstado(false);
                 }
+
+                if (si.isSelected()) {
+                    f.setEstado(true);
+                }
                 if (fd.create(f)) {
                     JOptionPane.showMessageDialog(null, "Mascota registrada con exito");
                     limpiarCampos();
@@ -208,6 +212,9 @@ public class CortoLabo extends JFrame {
 
                 if (no.isSelected()) {
                     f.setEstado(false);
+                }
+                if (si.isSelected()) {
+                    f.setEstado(true);
                 }
                 if (fd.update(f)) {
                     JOptionPane.showMessageDialog(null, "Mascota modificada con exito");
