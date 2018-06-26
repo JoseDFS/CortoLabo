@@ -256,7 +256,8 @@ public class CortoLabo extends JFrame {
                     numInscripcion.setText(f.getNumInscripcion());
                     raza.setSelectedItem(f.getRaza());
                     Propietario.setText(f.getPropietario());
-
+                    nombre.setText(f.getNombre());
+                    edad.setText(Integer.toString(f.getEdad()));
                     if (f.isEstado()) {
                         si.setSelected(true);
                     } else {
